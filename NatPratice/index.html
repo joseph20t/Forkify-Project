@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="display"></div>
+
+
+<script>
+   const myUrl = "https:forkify-api.herokuapp.com/api/search?q=pizza";
+
+    fetch(myUrl)
+    .then((response) => response.json())
+    .then((data) => {
+        let obj = document.getElementById("display");
+       console.log(data)
+        data.recipes.forEach((recipes) => {
+           obj.insertAdjacentHTML("beforeend", `
+           <ul>
+                <li>Title: ${recipes.title}</li>
+                <li>Publisher: ${recipes.publisher}</li>
+                <li>Source_url: <a href='#'>${recipes.source_url}</a></li>
+                <li>Image_url: <img src ="${recipes.image_url}" alt= "pizza image" /></li>
+           </ul>`)
+        })
+        
+       
+    })
+
+</script>
+
+
+</body>
+</html>
